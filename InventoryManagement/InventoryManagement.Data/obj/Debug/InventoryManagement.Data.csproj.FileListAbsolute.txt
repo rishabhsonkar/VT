@@ -1,0 +1,9 @@
+F:\InventoryManagement\InventoryManagement.Data\bin\Debug\InventoryManagement.Data.dll.config
+F:\InventoryManagement\InventoryManagement.Data\bin\Debug\InventoryManagement.Data.dll
+F:\InventoryManagement\InventoryManagement.Data\bin\Debug\InventoryManagement.Data.pdb
+F:\InventoryManagement\InventoryManagement.Data\bin\Debug\EntityFramework.dll
+F:\InventoryManagement\InventoryManagement.Data\bin\Debug\EntityFramework.SqlServer.dll
+F:\InventoryManagement\InventoryManagement.Data\bin\Debug\EntityFramework.xml
+F:\InventoryManagement\InventoryManagement.Data\bin\Debug\EntityFramework.SqlServer.xml
+F:\InventoryManagement\InventoryManagement.Data\obj\Debug\InventoryManagement.Data.dll
+F:\InventoryManagement\InventoryManagement.Data\obj\Debug\InventoryManagement.Data.pdb

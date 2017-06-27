@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="InventMgmModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Inventory">
+    <Key>
+      <PropertyRef Name="OrganisationId" />
+      <PropertyRef Name="ItemId" />
+      <PropertyRef Name="LocationId" />
+    </Key>
+    <Property Name="OrganisationId" Type="int" Nullable="false" />
+    <Property Name="ItemId" Type="int" Nullable="false" />
+    <Property Name="LocationId" Type="int" Nullable="false" />
+    <Property Name="SpaceUsed" Type="int" />
+  </EntityType>
+  <EntityType Name="Item">
+    <Key>
+      <PropertyRef Name="ItemId" />
+    </Key>
+    <Property Name="ItemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ItemName" Type="nvarchar" MaxLength="256" />
+    <Property Name="ItemImage" Type="nvarchar(max)" />
+    <Property Name="ItemPrice" Type="money" />
+    <Property Name="ItemSpace" Type="int" />
+    <Property Name="OrganisationId" Type="int" />
+  </EntityType>
+  <EntityType Name="Location">
+    <Key>
+      <PropertyRef Name="LocationId" />
+    </Key>
+    <Property Name="LocationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LocationName" Type="nvarchar" MaxLength="256" />
+    <Property Name="LocationAddress" Type="nvarchar(max)" />
+    <Property Name="LocationFreeSpace" Type="int" />
+    <Property Name="LocationUsedSpace" Type="int" />
+    <Property Name="OrganisationId" Type="int" />
+  </EntityType>
+  <EntityType Name="Organisation">
+    <Key>
+      <PropertyRef Name="OrganisationId" />
+    </Key>
+    <Property Name="OrganisationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OrganisationName" Type="nvarchar" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="Transaction">
+    <Key>
+      <PropertyRef Name="TransactionId" />
+    </Key>
+    <Property Name="TransactionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="itemId" Type="int" />
+    <Property Name="locationId" Type="int" />
+    <Property Name="OrganisationId" Type="int" />
+    <Property Name="userId" Type="int" />
+    <Property Name="TransactionDate" Type="date" />
+    <Property Name="TransactionType" Type="nvarchar(max)" />
+    <Property Name="Quantity" Type="int" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserFirstName" Type="nvarchar(max)" />
+    <Property Name="userLastName" Type="nvarchar(max)" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" />
+    <Property Name="UserType" Type="nvarchar(max)" />
+    <Property Name="OrganisationId" Type="int" />
+    <Property Name="UserPassword" Type="nvarchar(max)" />
+    <Property Name="ForgetPasswordQuestion" Type="nvarchar(max)" />
+    <Property Name="ForgetPasswordAnswer" Type="nvarchar(max)" />
+  </EntityType>
+  <Association Name="fk_Inventory_Item_id">
+    <End Role="Item" Type="Self.Item" Multiplicity="1" />
+    <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Item">
+        <PropertyRef Name="ItemId" />
+      </Principal>
+      <Dependent Role="Inventory">
+        <PropertyRef Name="ItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Inventory_Location_id">
+    <End Role="Location" Type="Self.Location" Multiplicity="1" />
+    <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="LocationId" />
+      </Principal>
+      <Dependent Role="Inventory">
+        <PropertyRef Name="LocationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Inventory_Organisation_id">
+    <End Role="Organisation" Type="Self.Organisation" Multiplicity="1" />
+    <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organisation">
+        <PropertyRef Name="OrganisationId" />
+      </Principal>
+      <Dependent Role="Inventory">
+        <PropertyRef Name="OrganisationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Item_organisation_id">
+    <End Role="Organisation" Type="Self.Organisation" Multiplicity="0..1" />
+    <End Role="Item" Type="Self.Item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organisation">
+        <PropertyRef Name="OrganisationId" />
+      </Principal>
+      <Dependent Role="Item">
+        <PropertyRef Name="OrganisationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Location_Organisation_id">
+    <End Role="Organisation" Type="Self.Organisation" Multiplicity="0..1" />
+    <End Role="Location" Type="Self.Location" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organisation">
+        <PropertyRef Name="OrganisationId" />
+      </Principal>
+      <Dependent Role="Location">
+        <PropertyRef Name="OrganisationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Transaction_Item_id">
+    <End Role="Item" Type="Self.Item" Multiplicity="0..1" />
+    <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Item">
+        <PropertyRef Name="ItemId" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="itemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Transaction_Location_id">
+    <End Role="Location" Type="Self.Location" Multiplicity="0..1" />
+    <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="LocationId" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="locationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Transaction_Organisation_id">
+    <End Role="Organisation" Type="Self.Organisation" Multiplicity="0..1" />
+    <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organisation">
+        <PropertyRef Name="OrganisationId" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="OrganisationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Transaction_User_id">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_User_organisation">
+    <End Role="Organisation" Type="Self.Organisation" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organisation">
+        <PropertyRef Name="OrganisationId" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="OrganisationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="InventMgmModelStoreContainer">
+    <EntitySet Name="Inventory" EntityType="Self.Inventory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Item" EntityType="Self.Item" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Organisation" EntityType="Self.Organisation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Transaction" EntityType="Self.Transaction" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="fk_Inventory_Item_id" Association="Self.fk_Inventory_Item_id">
+      <End Role="Item" EntitySet="Item" />
+      <End Role="Inventory" EntitySet="Inventory" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Inventory_Location_id" Association="Self.fk_Inventory_Location_id">
+      <End Role="Location" EntitySet="Location" />
+      <End Role="Inventory" EntitySet="Inventory" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Inventory_Organisation_id" Association="Self.fk_Inventory_Organisation_id">
+      <End Role="Organisation" EntitySet="Organisation" />
+      <End Role="Inventory" EntitySet="Inventory" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Item_organisation_id" Association="Self.fk_Item_organisation_id">
+      <End Role="Organisation" EntitySet="Organisation" />
+      <End Role="Item" EntitySet="Item" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Location_Organisation_id" Association="Self.fk_Location_Organisation_id">
+      <End Role="Organisation" EntitySet="Organisation" />
+      <End Role="Location" EntitySet="Location" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Transaction_Item_id" Association="Self.fk_Transaction_Item_id">
+      <End Role="Item" EntitySet="Item" />
+      <End Role="Transaction" EntitySet="Transaction" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Transaction_Location_id" Association="Self.fk_Transaction_Location_id">
+      <End Role="Location" EntitySet="Location" />
+      <End Role="Transaction" EntitySet="Transaction" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Transaction_Organisation_id" Association="Self.fk_Transaction_Organisation_id">
+      <End Role="Organisation" EntitySet="Organisation" />
+      <End Role="Transaction" EntitySet="Transaction" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Transaction_User_id" Association="Self.fk_Transaction_User_id">
+      <End Role="User" EntitySet="User" />
+      <End Role="Transaction" EntitySet="Transaction" />
+    </AssociationSet>
+    <AssociationSet Name="fk_User_organisation" Association="Self.fk_User_organisation">
+      <End Role="Organisation" EntitySet="Organisation" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

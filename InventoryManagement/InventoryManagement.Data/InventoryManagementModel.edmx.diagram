@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0ed0913285a14704aff604d3af344964" Name="Diagram1">
+        <EntityTypeShape EntityType="InventMgmModel.Inventory" Width="1.5" PointX="5.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventMgmModel.Item" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventMgmModel.Location" Width="1.5" PointX="3" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventMgmModel.Organisation" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventMgmModel.Transaction" Width="1.5" PointX="5.25" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventMgmModel.User" Width="1.5" PointX="3" PointY="13.5" IsExpanded="true" />
+        <AssociationConnector Association="InventMgmModel.fk_Inventory_Item_id" ManuallyRouted="false" />
+        <AssociationConnector Association="InventMgmModel.fk_Inventory_Location_id" ManuallyRouted="false" />
+        <AssociationConnector Association="InventMgmModel.fk_Inventory_Organisation_id" ManuallyRouted="false" />
+        <AssociationConnector Association="InventMgmModel.fk_Item_organisation_id" ManuallyRouted="false" />
+        <AssociationConnector Association="InventMgmModel.fk_Transaction_Item_id" ManuallyRouted="false" />
+        <AssociationConnector Association="InventMgmModel.fk_Location_Organisation_id" ManuallyRouted="false" />
+        <AssociationConnector Association="InventMgmModel.fk_Transaction_Location_id" ManuallyRouted="false" />
+        <AssociationConnector Association="InventMgmModel.fk_Transaction_Organisation_id" ManuallyRouted="false" />
+        <AssociationConnector Association="InventMgmModel.fk_User_organisation" ManuallyRouted="false" />
+        <AssociationConnector Association="InventMgmModel.fk_Transaction_User_id" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

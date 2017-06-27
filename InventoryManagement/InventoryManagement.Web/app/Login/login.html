@@ -1,0 +1,115 @@
+﻿<br/><br/><br/><br/><div class="container" ng-if="LoginFlag==true"><!--LoginPage-->
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    
+                    <center>Login</center>
+                </div>
+                <div class="panel-body">
+                    <form id="LoginForm" class="form-horizontal" role="form">
+                        <div class="input-group"><!--For user name-->
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-user">
+                                </i>
+                            </span>
+                            <input id="UserName" name="UserName" type="text" placeholder="Enter Your User Name" class="form-control" ng-model="loginData.UserName"/>
+                        </div>
+                        <div class="input-group"><!--For Password-->
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-lock">
+                                </i>
+                            </span>
+                            <input id="Password" name="Password" type="password" placeholder="Enter Your Password" class="form-control" ng-model="loginData.UserPassword"/>
+                        </div>
+                        <div class="col-lg-offset-1 col-lg-4 input-group">
+                            <input type="checkbox" value="RememberMe" id="RememberMe" name="RememberMe" ng-model="RememberMe"/>
+                            <label for="remember">Remember Me</label>
+                        </div>
+                        <div class="col-lg-offset-4 col-lg-4 input-group">
+                            <input type="button" value="Login" id="LoginBtn" name="loginBtn" class="form-control btn-success" ng-click="Login()"/>
+                        </div>
+                    </form>
+                </div>
+                <div class="panel-footer" style="padding:20px;margin:0px;">
+                    <center><a href="#" style="color:#31708f" ng-click="ForgetPassword=true">Forget Password?</a>&emsp;&emsp;<span style="font-size:15px">|</span>&emsp;&emsp;   
+                    <a href="" style="color:#31708f" ng-click="showSignup()">Create New Account</a></center>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>
+<div class="container" ng-if="LoginFlag==false">
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <center>
+                        Sign Up
+                    </center>
+                </div>
+                <div class="panel-body">
+                    <form class="form-horizontal" id="SignupForm" name="SignupForm">
+                        <div class="input-group">
+                            <h3>User Type:</h3>
+                            <select ng-model="registerData.UserType" ng-options="user for user in userType" class="form-control"></select>
+                        </div>
+                        <div ng-if="registerData.UserType=='Owner'">
+                            <hr />
+                            <h3> Organisation Name</h3>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                <input type="text" placeholder="Enter Your Organisation Name" class="form-control" ng-model="registerData.OrganisationName"/>
+                            </div>
+                        </div>
+                        <div>
+                            <hr />
+                            <h3>
+                                Personal Information:
+                            </h3>
+                            <div class="input-group">
+                                <span class="input-group-addon"><label>First Name</label></span>
+                                <input type="text" placeholder="Enter Your First Name" class="form-control" ng-model="registerData.UserFirstName"/>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon"><label>Last Name</label></span>
+                                <input type="text" placeholder="Enter Your Last Name" class="form-control" ng-model="registerData.UserLastName"/>
+                            </div>
+                        </div>
+                        <div>
+                            <hr />
+                            <h3>
+                                Login Information:
+                            </h3>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input type="text" placeholder="Enter Your User Name" class="form-control" ng-model="registerData.UserName"/>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                <input type="password" placeholder="Enter Your Password" class="form-control" ng-model="registerData.UserPassword"/>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-question-sign"></i></span>
+                                <input type="text" placeholder="Forget Password Question" class="form-control" ng-model="registerData.ForgetPasswordQuestion"/>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-text-color"></i></span>
+                                <input type="text" placeholder="Forget Password Answer" class="form-control" ng-model="registerData.ForgetPasswordAnswer"/>
+                            </div>
+                        </div>
+                        <div>
+                            <hr />
+                            <div class="col-lg-offset-4 col-lg-4 input-group">
+                                <input type="button" value="Register Me" id="registerBtn" name="registerBtn" class="form-control btn-success" ng-click="Register()"/>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="panel-footer" style="padding:20px;margin:0px;">
+                    <center><a href="" style="color:#31708f" ng-click="showLogin()">Already Have an Account?</a></center>
+                </div>
+           </div>
+        </div>
+    </div>
+</div>

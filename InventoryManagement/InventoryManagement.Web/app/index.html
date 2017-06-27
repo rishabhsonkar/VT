@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <title></title>
+    <link href="/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="/Content/ui-bootstrap-csp.css" rel="stylesheet" />
+	<meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=no" name="viewport" />
+</head>
+<body>
+    <div ng-include="'Header/header.html'"></div>
+    
+    <div ng-view=""></div>
+    <div ng-include="'Footer/footer.html'"></div>
+    <script src="/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="/Scripts/angular.min.js"></script>
+    <script src="/Scripts/bootstrap.min.js"></script>
+    <script src="/Scripts/angular-route.min.js"></script>
+    <script src="app.js"></script>
+    <script src="Login/loginController.js"></script>
+</body>
+</html>
